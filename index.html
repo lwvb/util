@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>My Ip</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet">
+  <style type="text/css" media="screen">
+    body {
+      overflow-x: hidden;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Source Code Pro', monospace;
+    }
+    h1 {
+      font-size: 4em;
+      margin-bottom: 2em;
+    }
+    button {
+      font-size: 1em;
+      padding: 1em 2em;
+      background: white;
+      border: 2px solid black;
+    }
+</style>
+</head>
+<body>
+<h1 id="main">Your ip is: </h1>
+<button onclick="loadIp()">reload</button>
+
+<script>
+  const myIp = new Request(document.location.href, { method: 'POST' });
+  const showIp = ip => document.getElementById('main').innerText = `Your ip is: ${ip}`;
+  const parseResponse = response => response.json();
+  const loadIp = () => fetch(myIp).then(parseResponse).then(showIp);
+  loadIp();
+</script>
+</body>
+</html>
