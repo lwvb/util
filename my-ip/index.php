@@ -1,7 +1,7 @@
 <?php
 
-if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-  include('my-ip.html');
+if ($_SERVER['REQUEST_METHOD'] == 'GET' ) {
+  include('view.html');
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
