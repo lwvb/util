@@ -5,6 +5,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' ) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-  echo json_encode($_SERVER['REMOTE_ADDR']);
+  echo json_encode($_SERVER['HTTP_X_FORWARDED_FOR'] ? $_SERVER['HTTP_X_FORWARDED_FOR'] : $_SERVER['REMOTE_ADDR']);
 }
 
