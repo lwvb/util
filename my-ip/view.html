@@ -39,13 +39,13 @@
   // requests to app service use ipv4
   const myIpv4 = new Request('https://lwvb-util.azurewebsites.net/my-ip/', { method: 'POST' });
   const showIp = ip => document.getElementById('main').innerText = `Your ip is: ${ip}`;
-  const showIps = (ipv4, ipv6) => document.getElementById('main').innerText = `Your ip is: ${ipv4} <br> ${ipv6}`;
+  const showIps = (ipv4, ipv6) => document.getElementById('main').innerHTML = `Your ip is: ${ipv4} <br> ${ipv6}`;
   const render = ([ipv4, ipv6]) => ipv4 === ipv6 ? showIp(ipv4): showIps(ipv4, ipv6);
   const parseResponse = response => response.json();
-  const loadIp = () => Promise.all(
+  const loadIp = () => Promise.all([
     fetch(myIpv4).then(parseResponse),
     fetch(myIpv6).then(parseResponse),
-  ).then(render);
+  ]).then(render);
   loadIp();
 </script>
 </body>
