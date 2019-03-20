@@ -10,11 +10,11 @@ function getIp() {
   }
   return $_SERVER['REMOTE_ADDR'];
 }
-function stripPort(ip) {
-  if(strpos(ip, '.') === false) {
-    return ip;
+function stripPort($ip) {
+  if(strpos($ip, '.') === false) {
+    return $ip;
   }
-  return explode(':', ip)[0];
+  return explode(':', $ip)[0];
 }
 
 function renderBody() {
