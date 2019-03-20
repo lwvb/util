@@ -34,10 +34,10 @@
 <button onclick="loadIp()">reload</button>
 
 <script>
-  // default request with azure cdn uses ipv6
-  const myIpv6 = new Request(document.location.href, { method: 'POST' });
+  // azure cdn uses ipv6
+  const myIpv6 = new Request('https://util.lwvb.nl/my-ip/', { method: 'POST' });
   // requests to app service use ipv4
-  const myIpv4 = new Request('https://lwvb-util.azurewebsites.net', { method: 'POST' });
+  const myIpv4 = new Request('https://lwvb-util.azurewebsites.net/my-ip/', { method: 'POST' });
   const showIp = ip => document.getElementById('main').innerText = `Your ip is: ${ip}`;
   const showIps = (ipv4, ipv6) => document.getElementById('main').innerText = `Your ip is: ${ipv4} <br> ${ipv6}`;
   const render = ([ipv4, ipv6]) => ipv4 === ipv6 ? showIp(ipv4): showIps(ipv4, ipv6);
