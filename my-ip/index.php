@@ -6,9 +6,15 @@ function setCorsHeader() {
 
 function getIp() {
   if($_SERVER['HTTP_X_FORWARDED_FOR']) {
-    return explode(',', $_SERVER['HTTP_X_FORWARDED_FOR'])[0];
+    return stripPort(explode(',', $_SERVER['HTTP_X_FORWARDED_FOR'])[0]);
   }
-  return explode(':', $_SERVER['REMOTE_ADDR'])[0];
+  return $_SERVER['REMOTE_ADDR'];
+}
+function stripPort(ip) {
+  if(strpos(ip, '.') === false) {
+    return ip;
+  }
+  return explode(':', ip)[0];
 }
 
 function renderBody() {
