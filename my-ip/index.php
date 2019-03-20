@@ -1,7 +1,7 @@
 <?php
 
-if ($_SERVER['REQUEST_METHOD'] == 'GET' ) {
-  include('view.html');
+function setCorsHeader() {
+  header('Access-Control-Allow-Origin: *');
 }
 
 function getIp() {
@@ -11,7 +11,15 @@ function getIp() {
   return $_SERVER['REMOTE_ADDR'];
 }
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-  echo json_encode(getIp());
+function renderBody() {
+  if ($_SERVER['REQUEST_METHOD'] == 'GET' ) {
+    include('view.html');
+  }
+
+  if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    echo json_encode(getIp());
+  }
 }
 
+setCorsHeader();
+renderBody();
